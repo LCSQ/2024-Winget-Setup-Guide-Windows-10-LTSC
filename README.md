@@ -70,7 +70,7 @@ To get the latest version of Winget follow these steps:
     Add-AppxProvisionedPackage -Online -PackagePath "PATH TO MSIXBUNDLE" -LicensePath "PATH TO XML" -Verbose
     ```
 8. Verify that the installation succeeded by running winget in PowerShell. If no errors occur then you're almost done!
-9. Finally revert your exection policy back to it's default state and you're done!
+9. Finally revert your Execution Policy back to it's default state and you're done!
      ```powershell
      Set-ExecutionPolicy Restricted
     ```
