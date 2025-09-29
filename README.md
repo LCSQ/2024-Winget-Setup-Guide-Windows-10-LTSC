@@ -31,54 +31,35 @@ Or, if necessary, to set it to "Unrestricted," use:
   
   
  ## Installation of dependencies <a name = "dep"> </a>
-Before installing Winget, please ensure that the following dependencies are installed on your system: 
+Before installing Winget, please ensure that the following dependencies are installed on your system, to do so download the DesktopAppInstaller_Dependencies.zip from [Winget Latest Releases](https://github.com/microsoft/winget-cli/releases/latest). Choose the correct architecture for your system and extract the folder to your prefered location.
 
-1.**VC++ v14 Desktop Framework: <a name = "depA"> </a>** This framework includes the Microsoft Visual C++ Runtime Libraries (VCLibs) for 64-bit Windows desktop applications.
-* If your system architecture is 64-bit, install the framework using the following command:
+1. **VC++ v14 Desktop Framework: <a name = "depA"> </a>** This framework includes the Microsoft Visual C++ Runtime Libraries (VCLibs) for Windows desktop applications.
+* Install the framework using the following command:
 
    ```powershell
-    Add-AppxPackage "https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx"
+    Add-AppxPackage "PATH TO Microsoft.VCLibs.apx"
     ```
- * If your system architecture is 32-bit, install the framework using the following command:
-
-    ```powershell
-    Add-AppxPackage "https://aka.ms/Microsoft.VCLibs.x86.14.00.Desktop.appx"
-    ```
-2. **Microsoft.UI.Xaml.2.8: <a name = "depB"> </a>** Before installation, you'll need to download the Microsoft.UI.Xaml.2.8 package via PowerShell
+2. **Microsoft.UI.Xaml.2.8: <a name = "depB"> </a>** 
      
- ```powershell
- Invoke-WebRequest -Uri "https://www.nuget.org/api/v2/package/Microsoft.UI.Xaml/2.8.6" -OutFile "microsoft.ui.xaml.2.8.6.zip"
-```
-* After downloading the package as a zip archive, extract it:
+* Install the framework using the following command:
 
    ```powershell
-   Expand-Archive .\microsoft.ui.xaml.2.8.6.zip
-   ```
-* Based on your system architecture, install the package from the corresponding directory.
-- For **64-bit** architecture, install from this directory:
-
-   ```powershell
-    Add-AppPackage .\microsoft.ui.xaml.2.8.6\tools\AppX\x64\Release\Microsoft.UI.Xaml.2.8.appx
+    Add-AppxPackage "PATH TO Microsoft.UI.Xaml.apx"
     ```
-- For **32-bit** architecture, install from this directory:
-
-   ```powershell
-   Add-AppPackage .\microsoft.ui.xaml.2.8.6\tools\AppX\x86\Release\Microsoft.UI.Xaml.2.8.appx
-    ```  
 
 With these dependencies correctly installed you can proceed to install Winget.
 ## Instalation of Winget <a name = "winget"> </a>
 
-To get the latest version of Winget as of March 2024, which is version 1.7.10661 released in March 2024, follow these steps:
+To get the latest version of Winget follow these steps:
 
 1. Open your web browser and go to the following URL:
    [Winget Latest Releases](https://github.com/microsoft/winget-cli/releases/latest)
 
-2. On the GitHub page, scroll down to find the latest release. Look for the version "1.7.10661" or a newer version if available.
+2. On the GitHub page, scroll down to find the latest release.
 
 3. In the Assets section of the release, you should see a file with the extension ".msixbundle" at the bottom of the page.
 
-4. Download the ".msixbundle" file and license file. The file that contains the Winget package in MSIXBundle format and the file that contains the licesne is in XML format.
+4. Download the ".msixbundle" file and license file ".xml". The file that contains the Winget package in MSIXBundle format and the file that contains the licesne is in XML format.
 
 5. Once the download is complete, navigate to the folder where the ".msixbundle" and ".xml" file are downloaded.
 
@@ -88,4 +69,8 @@ To get the latest version of Winget as of March 2024, which is version 1.7.10661
     ```powershell
     Add-AppxProvisionedPackage -Online -PackagePath "PATH TO MSIXBUNDLE" -LicensePath "PATH TO XML" -Verbose
     ```
-8.    Verify that the installation succeeded by running winget in PowerShell. If no errors occur then you're done!
+8. Verify that the installation succeeded by running winget in PowerShell. If no errors occur then you're almost done!
+9. Finally revert your exection policy back to it's default state and you're done!
+     ```powershell
+     Set-ExecutionPolicy Restricted
+    ```
